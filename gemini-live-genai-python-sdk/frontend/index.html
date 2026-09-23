@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clinical History Taking System Demo</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Clinical History Taking System Demo</h1>
+        <div style="display: flex; gap: 10px; align-items: center">
+          <div id="status" class="status disconnected">Disconnected</div>
+        </div>
+      </header>
+
+      <main>
+        <div class="auth-section" id="auth-section">
+          <div
+            class="description-box"
+            style="
+              margin-bottom: 20px;
+              padding: 15px;
+              background: #f5f5f5;
+              border-radius: 8px;
+              text-align: left;
+            "
+          >
+            <h3>Features Enabled:</h3>
+            <ul style="margin: 10px 0 20px 20px">
+              <li>
+                <strong>Native Audio:</strong> Voice interaction
+              </li>
+              <li>
+                <strong>Multilingual:</strong> Speak in different languages
+              </li>
+            </ul>
+            <p>
+              <em>
+                Note: When you connect, the app sends a text message to start
+                an interview session for collecting medical history information.
+              </em>
+            </p>
+          </div>
+          <p>Click below to connect.</p>
+          <label class="voice-setting" for="connectVoiceSelect">
+            Voice
+            <select id="connectVoiceSelect" class="voice-select">
+              <option value="Puck" selected>Puck</option>
+              <option value="Charon">Charon</option>
+              <option value="Kore">Kore</option>
+              <option value="Fenrir">Fenrir</option>
+              <option value="Aoede">Aoede</option>
+              <option value="Leda">Leda</option>
+              <option value="Orus">Orus</option>
+              <option value="Zephyr">Zephyr</option>
+            </select>
+          </label>
+          <label class="voice-setting" for="visitIdInput">
+            Visit ID
+            <input
+              type="text"
+              id="visitIdInput"
+              class="visit-id-input"
+              placeholder="e.g. V-2026-07-17-0031"
+            />
+          </label>
+          <label class="voice-setting" for="restartHistoryCheckbox" style="flex-direction: row; align-items: center; gap: 8px; cursor: pointer;">
+            <input
+              type="checkbox"
+              id="restartHistoryCheckbox"
+            />
+            Restart History Taking
+          </label>
+          <button id="connectBtn" class="btn">Connect</button>
+        </div>
+
+        <div class="session-end-section hidden" id="session-end-section">
+          <h2>Session Ended</h2>
+          <div class="session-end-actions">
+            <button id="restartBtn" class="btn">Start New Session</button>
+            <button id="resumeBtn" class="btn">Resume Session</button>
+          </div>
+        </div>
+
+        <div class="app-section hidden" id="app-section">
+          <div class="app-grid">
+            <div class="left-panel">
+              <div class="video-container">
+                <div id="video-placeholder">Start camera to send video</div>
+                <video id="video-preview" autoplay playsinline muted></video>
+                <canvas id="video-canvas" style="display: none"></canvas>
+              </div>
+
+              <div class="controls">
+                <button id="micBtn" class="btn icon-btn">Start Mic</button>
+                <button id="cameraBtn" class="btn icon-btn">
+                  Start Camera
+                </button>
+                <button id="screenBtn" class="btn icon-btn">
+                  Share Screen
+                </button>
+                <button id="disconnectBtn" class="btn icon-btn danger">
+                  Disconnect
+                </button>
+              </div>
+            </div>
+
+            <div class="right-panel">
+              <div class="chat-log" id="chat-log"></div>
+              <div class="input-area">
+                <input
+                  type="text"
+                  id="textInput"
+                  placeholder="Type a message..."
+                />
+                <button id="sendBtn" class="btn">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="/static/media-handler.js"></script>
+    <script src="/static/gemini-client.js"></script>
+    <script src="/static/main.js"></script>
+  </body>
+</html>
